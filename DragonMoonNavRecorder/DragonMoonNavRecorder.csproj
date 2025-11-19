@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <OutputType>Library</OutputType>
     <RootNamespace>DragonMoonNavRecorder</RootNamespace>
     <AssemblyName>DragonMoonNavRecorder</AssemblyName>
@@ -8,6 +8,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <LangVersion>latest</LangVersion>
     <DefineConstants>$(DefineConstants);VVS_REFERENCED</DefineConstants>
+    <UseReferenceAssemblies>false</UseReferenceAssemblies>
+    <DisableImplicitFrameworkReferences>false</DisableImplicitFrameworkReferences>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -24,13 +28,40 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.InteropServices" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Timers" />
+    <Reference Include="System">
+      <CopyLocal>true</CopyLocal>
+    </Reference>
+    <Reference Include="System.Core">
+      <CopyLocal>true</CopyLocal>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <CopyLocal>true</CopyLocal>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices">
+      <CopyLocal>true</CopyLocal>
+    </Reference>
+    <Reference Include="System.Xml">
+      <CopyLocal>true</CopyLocal>
+    </Reference>
+    <Reference Include="System.Timers">
+      <CopyLocal>true</CopyLocal>
+    </Reference>
+  </ItemGroup>
+  
+  <!-- Stub assembly references for Linux build -->
+  <ItemGroup>
+    <Reference Include="Decal.Adapter" Condition="Exists('$(MSBuildProjectDirectory)/Stubs/Decal.Adapter.dll')">
+      <HintPath>$(MSBuildProjectDirectory)/Stubs/Decal.Adapter.dll</HintPath>
+      <CopyLocal>true</CopyLocal>
+      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="VirindiViewService" Condition="Exists('$(MSBuildProjectDirectory)/Stubs/VirindiViewService.dll')">
+      <HintPath>$(MSBuildProjectDirectory)/Stubs/VirindiViewService.dll</HintPath>
+      <CopyLocal>true</CopyLocal>
+      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
   </ItemGroup>
   
   <!-- Optional Decal.Adapter reference - will be resolved at runtime -->
@@ -38,6 +69,7 @@
     <Reference Include="Decal.Adapter">
       <HintPath>C:\Games\Decal 3.0\Decal.Adapter.dll</HintPath>
       <Private>False</Private>
+      <CopyLocal>true</CopyLocal>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
   </ItemGroup>
@@ -47,16 +79,17 @@
     <Reference Include="VirindiViewService">
       <HintPath>C:\Games\VirindiPlugins\VirindiViewService\VirindiViewService.dll</HintPath>
       <Private>False</Private>
+      <CopyLocal>true</CopyLocal>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
   </ItemGroup>
   
   <ItemGroup>
     <!-- Stub files for compilation without DLLs -->
-    <Compile Include="Stubs\DecalStubs.cs" Condition="!Exists('C:\Games\Decal 3.0\Decal.Adapter.dll')">
+    <Compile Include="Stubs\DecalStubs.cs" Condition="!Exists('C:\Games\Decal 3.0\Decal.Adapter.dll') AND !Exists('$(MSBuildProjectDirectory)/Stubs/Decal.Adapter.dll')">
       <DefineConstants>DECAL_STUBS</DefineConstants>
     </Compile>
-    <Compile Include="Stubs\VirindiStubs.cs" Condition="!Exists('C:\Games\VirindiPlugins\VirindiViewService\VirindiViewService.dll')">
+    <Compile Include="Stubs\VirindiStubs.cs" Condition="!Exists('C:\Games\VirindiPlugins\VirindiViewService\VirindiViewService.dll') AND !Exists('$(MSBuildProjectDirectory)/Stubs/VirindiViewService.dll')">
       <DefineConstants>VVS_STUBS</DefineConstants>
     </Compile>
     <!-- Main source files -->
