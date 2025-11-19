@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<view icon="8712" title="DragonMoon Nav Recorder" width="350" height="300">
+  <control progid="DecalControls.FixedLayout" clipped="">
+    <control progid="DecalControls.StaticText" name="StatusLabel" left="10" top="10" width="330" height="20" text="Status: Stopped" />
+    <control progid="DecalControls.StaticText" name="PointCountLabel" left="10" top="35" width="330" height="20" text="Points Recorded: 0" />
+    
+    <control progid="DecalControls.PushButton" name="StartRecording" left="10" top="65" width="150" height="30" text="Start Recording" />
+    <control progid="DecalControls.PushButton" name="StopRecording" left="170" top="65" width="150" height="30" text="Stop Recording" />
+    
+    <control progid="DecalControls.PushButton" name="SaveRoute" left="10" top="105" width="150" height="30" text="Save Route" />
+    <control progid="DecalControls.PushButton" name="ClearRoute" left="170" top="105" width="150" height="30" text="Clear Route" />
+    
+    <control progid="DecalControls.StaticText" name="InfoLabel" left="10" top="150" width="330" height="100" text="Press F9 to toggle recording.&#10;&#10;Routes are saved to:&#10;My Documents\Asheron's Call\NavRoutes\" />
+  </control>
+</view>
