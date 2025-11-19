@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<view icon="8712" title="NavRecorder" width="250" height="150">
+  <control progid="DecalControls.FixedLayout" clipped="">
+    <control progid="DecalControls.PushButton" name="StartButton" left="10" top="10" width="100" height="30" text="Start Recording" />
+    <control progid="DecalControls.PushButton" name="StopButton" left="120" top="10" width="100" height="30" text="Stop Recording" />
+    <control progid="DecalControls.StaticText" name="StatusText" left="10" top="50" width="230" height="20" text="Status: Stopped" />
+    <control progid="DecalControls.StaticText" name="StatsText" left="10" top="80" width="230" height="60" text="Waypoints: 0&#x0A;Events: 0" />
+  </control>
+</view>
