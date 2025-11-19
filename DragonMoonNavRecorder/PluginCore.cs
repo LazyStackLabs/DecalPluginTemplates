@@ -265,7 +265,7 @@ namespace DragonMoonNavRecorder
 		}
 
 		[BaseEvent("Logoff", "CharacterFilter")]
-		private void CharacterFilter_Logoff(object sender, Decal.Adapter.Wrappers.LogoffEventArgs e)
+		private void CharacterFilter_Logoff(object sender, System.EventArgs e)
 		{
 			try
 			{
